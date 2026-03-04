@@ -1,7 +1,13 @@
 from fastapi import FastAPI
 from pathlib import Path
+import os
 
-app = FastAPI()
+BASE_URL = os.getenv("RENDER_EXTERNAL_URL", "http://localhost:8000")
+
+app = FastAPI(
+    title="Document API",
+    servers=[{"url": BASE_URL}]
+)
 
 ALLOWED_BASE = Path("./docs").resolve()
 
